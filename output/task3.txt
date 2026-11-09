@@ -1,0 +1,28 @@
+
+PLAY [Configure Apache web server] *********************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Host 'ubuntu-server' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+ok: [ubuntu-server]
+
+TASK [apache_server : Install Apache] ******************************************
+ok: [ubuntu-server]
+
+TASK [apache_server : Start and enable Apache] *********************************
+ok: [ubuntu-server]
+
+TASK [apache_server : Configure Apache] ****************************************
+ok: [ubuntu-server]
+
+TASK [apache_server : Create Apache index page] ********************************
+ok: [ubuntu-server]
+
+TASK [apache_server : Allow HTTP traffic through UFW] **************************
+ok: [ubuntu-server]
+
+TASK [apache_server : Check Apache HTTP response] ******************************
+ok: [ubuntu-server]
+
+PLAY RECAP *********************************************************************
+ubuntu-server              : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

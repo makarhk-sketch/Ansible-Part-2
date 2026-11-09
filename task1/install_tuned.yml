@@ -1,0 +1,22 @@
+---
+- name: Install and configure tuned
+  hosts: servers
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install tuned package
+      ansible.builtin.apt:
+        name: tuned
+        state: present
+
+    - name: Start tuned and enable at boot
+      ansible.builtin.systemd_service:
+        name: tuned
+        state: started
+        enabled: true

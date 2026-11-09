@@ -1,0 +1,10 @@
+
+PLAY [Change system welcome message] *******************************************
+
+TASK [Set custom MOTD] *********************************************************
+[WARNING]: Host 'ubuntu-server' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+changed: [ubuntu-server]
+
+PLAY RECAP *********************************************************************
+ubuntu-server              : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

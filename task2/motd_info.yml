@@ -1,0 +1,22 @@
+---
+- name: Configure dynamic MOTD
+  hosts: servers
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Set dynamic welcome message
+      ansible.builtin.copy:
+        content: |
+          =====================================
+              ДОБРО ПОЖАЛОВАТЬ НА МОЙ СЕРВЕР!
+          =====================================
+
+          Имя сервера: {{ ansible_facts["hostname"] }}
+          IP-адрес: {{ ansible_facts["default_ipv4"]["address"] }}
+
+          Хорошего дня, администратор!
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: "0644"

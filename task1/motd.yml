@@ -1,0 +1,23 @@
+---
+- name: Change system welcome message
+  hosts: servers
+  become: true
+  gather_facts: false
+
+  vars:
+    welcome_message: |
+      =====================================
+          ДОБРО ПОЖАЛОВАТЬ НА МОЙ СЕРВЕР!
+      =====================================
+
+      Система управления: Ubuntu 24.04
+      Хорошего дня!
+
+  tasks:
+    - name: Set custom MOTD
+      ansible.builtin.copy:
+        content: "{{ welcome_message }}"
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: "0644"

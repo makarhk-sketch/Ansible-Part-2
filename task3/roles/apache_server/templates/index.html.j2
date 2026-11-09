@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ansible Apache Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 700px;
+        }
+        h1 {
+            color: #333;
+        }
+        li {
+            margin: 12px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Информация о сервере</h1>
+        <p>Эта страница создана автоматически с помощью Ansible.</p>
+
+        <ul>
+            <li><strong>Имя сервера:</strong> {{ ansible_facts["hostname"] }}</li>
+            <li><strong>IP-адрес:</strong> {{ ansible_facts["default_ipv4"]["address"] }}</li>
+            <li><strong>Процессор:</strong> {{ ansible_facts["processor"][2] }}</li>
+            <li><strong>Оперативная память:</strong> {{ ansible_facts["memtotal_mb"] }} MB</li>
+            <li><strong>Первый диск:</strong>
+                {% set disks = ansible_facts["devices"] | dict2items | selectattr("key", "match", "^(sd[a-z]|vd[a-z]|xvd[a-z]|nvme[0-9]+n[0-9]+)$") | list %}
+                {% if disks | length > 0 %}
+                    {{ disks[0].value.size }}
+                {% else %}
+                    Не определён
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
